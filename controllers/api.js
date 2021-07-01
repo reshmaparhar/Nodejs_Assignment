@@ -2,11 +2,11 @@ const { query } = require('express');
 let products = require('../data')
 
 const addProduct = (req,res)=>{
-    const id = req.query.id
-    const name = req.query.name
-    const price = req.query.price
-    const availableQuantity = req.query.availableQuantity
-    const manufacturer = req.query.manufacturer
+    const id = req.body.id
+    const name = req.body.name
+    const price = req.body.price
+    const availableQuantity = req.body.availableQuantity
+    const manufacturer = req.body.manufacturer
   
     if(id && name && price && availableQuantity && manufacturer){
         const Product = {
