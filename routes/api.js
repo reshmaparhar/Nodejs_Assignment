@@ -6,19 +6,10 @@ const products = require('../data')
 const {updateData,
 deleteData,
 addProduct,
-getAllProducts,
-getProductById,    
+getProduct,    
 getPrice
 }= require('../controllers/api');   
 
-
-router.get('/price',getPrice)
-router.post('/add',addProduct);
-router.get('/getalldata',getAllProducts);
-router.get('/get/:id',getProductById);
-router.put('/update',updateData);
-router.delete('/delete/:id',deleteData);
-
-//router.route('/').get(getAllProducts).post(addProduct).put(updateData).delete(deleteData)
-
+router.route('/getalldata/:id?').get(getProduct)
+router.route('/').get(getPrice).post(addProduct).put(updateData).delete(deleteData)
 module.exports = router;
