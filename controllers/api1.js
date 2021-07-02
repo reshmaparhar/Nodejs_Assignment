@@ -5,21 +5,32 @@ const addProduct = (req,res)=>{
     const Product = req.body;
     const {id,name,price,availableQuantity,manufacturer} = req.body
     try{            
+    
         if(id && name && price && availableQuantity && manufacturer){
-
-            const OldProduct = products.some(product => product._id === Number(req.body.id))
+            const Product = {
+                "_id": id,
+                "name": name,
+                "price": price,
+                "availableQuantity": availableQuantity,
+                "manufacturer": manufacturer
+            }
+            const OldProduct = products.find((product)=>{
+                if(product._id === Number(req.body.id)){
+                return product;
+                
+                }
+            })
             if(OldProduct){
-                const error = new Error(`Product with id ${req.body.id} Already exists`)
-                throw error;
+                return res.status(200).json({success:true,message: `Product with id ${id} Already exists`});
             }
             else{
+                //products.push(Product);
                 products.splice(products.length, 0,Product);
-                return res.status(200).json({success:true, data :products});
+                res.status(200).json({success:true, data :products});
             }
         }
         else{
-            const error = new Error('Please Provide valid details')
-            throw error;
+           return res.status(200).json({success:false,message: 'Please Provide valid details'});
         }
     }
     catch(err){
@@ -35,36 +46,22 @@ const getAllProducts =
         data:products
     })
 }
-const getProductById = async(req,res)=>{
-    try{
+const getProductById = (req,res)=>{
         const id = req.params.id;
-        var index = await products.findIndex(product=> {
-            if(product._id === Number(id))
-                return product})
-        if(index !== -1){
-        const newProduct = products[index]
-            return res.status(200).json({
-                        success:true, 
-                        data: newProduct
-            }  
-        )
+        const Product = products.find((product)=>{
+            if(product._id === Number(id)){
+              return product;
+            }
+        })
+        if(!Product){
+            return res.status(404).json({success:false,msg:`Product with id ${id} does not exist`});
         }
-        else{
-            const error = new Error('Please Provide valid Id')
-            throw error;
-        }
-    }
-    catch(err){
-            res.status(500).json({ message: err.message });
-    }
-} 
-
-
+         res.status(200).json({success:true,data : Product});
+}
 const updateData = async(req,res)=>{
     try{
-        const id = req.params.id;
-        console.log(products.length)
-        const name = req.body.name 
+        const id = req.query.id;
+        const name = req.query.name 
         var index = await products.findIndex(product=> {
             if(product._id === Number(id))
             return product})
@@ -79,11 +76,10 @@ const updateData = async(req,res)=>{
 const deleteData = async(req,res)=>{
     try{              
         const id = req.params.id;
-        var index = await products.findIndex(product=> {
+        var index =  await products.findIndex(product=> {
             if(product._id === Number(id))
             return product})
-        console.log(index)
-        await products.splice(index,1);
+        products.splice(index,1);
         res.status(200).json({success:true,data :products});
     }
     catch(err){
@@ -94,9 +90,8 @@ const deleteData = async(req,res)=>{
 const getPrice = async(req,res)=>{
     try{
         const product_id = req.query.product_id
-        
         const quantityToBuy = req.query.quantityToBuy
-        const Product = products.find((product)=>{
+        const Product = await products.find((product)=>{
             if(product._id === Number(product_id)){
                 product.availableQuantity = product.availableQuantity - quantityToBuy
             return product;
@@ -116,9 +111,6 @@ const getPrice = async(req,res)=>{
         res.status(500).json({ message: err.message });
     }
 }
-
-
-
 module.exports = {
     updateData,
     deleteData,

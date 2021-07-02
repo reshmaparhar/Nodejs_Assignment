@@ -31,7 +31,7 @@ const addProduct = (req,res)=>{
         }
     }
     else{
-        return res.status(200).json({success:true,message: 'Please Provide valid details'});
+        return res.status(200).json({success:false,message: 'Please Provide valid details'});
     }
     
 }
@@ -49,7 +49,6 @@ const getProductById = (req,res)=>{
           return product;
         }
     })
-    console.log(Product)
     if(!Product){
         return res.status(404).json({success:false,msg:`Product with id ${id} does not exist`});
     }
@@ -75,18 +74,19 @@ const updateData = (req,res)=>{
 };
 const deleteData = (req,res)=>{
     const id = req.params.id;
-    
-    Product = products.find(product=>(product._id === Number(id)))
-    var index = products.findIndex(product=>(product._id === Number(id)))
-
-    products.splice(index,1);
-    res.status(200).json({success:true,data :products});
+   var index = products.findIndex(product=>(product._id === Number(id)))
+   if(index !== -1){
+        products.splice(index,1);
+        res.status(200).json({success:true,data :products});
+    }
+   else{
+        res.status(500).json({ message:`Product with id ${id} does not exist`});
+    }
 
 }
 const getPrice = (req,res)=>{
 
     const product_id = req.query.product_id
-    
     const quantityToBuy = req.query.quantityToBuy
     const Product = products.find((product)=>{
         if(product._id === Number(product_id)){
