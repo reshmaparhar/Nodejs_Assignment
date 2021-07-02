@@ -9,14 +9,14 @@ addProduct,
 getAllProducts,
 getProductById,    
 getPrice
-}= require('../controllers/api');   
+}= require('../controllers/api1');   
 
 
 router.get('/price',getPrice)
 router.post('/add',addProduct);
 router.get('/getalldata',getAllProducts);
 router.get('/get/:id',getProductById);
-router.put('/update',updateData);
+router.post('/update/:id',updateData);
 router.delete('/delete/:id',deleteData);
 
 //router.route('/').get(getAllProducts).post(addProduct).put(updateData).delete(deleteData)
