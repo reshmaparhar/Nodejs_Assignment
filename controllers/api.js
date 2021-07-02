@@ -2,11 +2,11 @@ const { query } = require('express');
 let products = require('../data')
 
 const addProduct = (req,res)=>{
-    const id = req.query.id
-    const name = req.query.name
-    const price = req.query.price
-    const availableQuantity = req.query.availableQuantity
-    const manufacturer = req.query.manufacturer
+    const id = req.body.id
+    const name = req.body.name
+    const price = req.body.price
+    const availableQuantity = req.body.availableQuantity
+    const manufacturer = req.body.manufacturer
   
     if(id && name && price && availableQuantity && manufacturer){
         const Product = {
@@ -65,11 +65,7 @@ const updateData = (req,res)=>{
     const id = req.query.id;
     const name = req.query.name;
     
-    const Product = products.find((product)=>{
-        if(product._id === Number(id)){
-            return product;
-        }
-    })
+    const Product = products.find(product=>(product._id === Number(id))product)
     if(!Product){
         return res.status(401).json({success:false,message:`Product with id ${id} does nor exist so we cannot update it`})
     }
@@ -85,23 +81,10 @@ const updateData = (req,res)=>{
 const deleteData = (req,res)=>{
     const id = req.params.id;
     
-    Product = products.find((product)=>{
-        if(product._id === Number(id)){
-          return product;
-          
-        }
-    })
-    
-    
-    var index = products.findIndex((product)=>{
-        if(product._id === Number(id)){
-                return product;
-            }
-    })
-    
-    
-    delete products[index];
-    var newproducts = new Array();
+    Product = products.find(product=>(product._id === Number(id))product)
+    var index = products.findIndex(product=>(product._id === Number(id))product)
+    products.splice(index,1);
+    /*var newproducts = new Array();
 
         
         for (var i = 0; i < products.length; i++) {
@@ -109,7 +92,7 @@ const deleteData = (req,res)=>{
             newproducts.push(products[i]);
           }
         }
-    products = newproducts;
+    products = newproducts;*/
     
     /*const newProduct = products.filter((product)=>{
         if(product._id !== Number(id)){
