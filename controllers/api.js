@@ -17,18 +17,16 @@ const addProduct = (req,res)=>{
             "manufacturer": manufacturer
         }
         const OldProduct = products.find((product)=>{
-            if(product._id === Number(req.query.id)){
+            if(product._id === Number(req.body.id)){
               return product;
               
             }
         })
-        
         if(OldProduct){
             return res.status(200).json({success:true,message: `Product with id ${id} Alreadye exists`});
         }
         else{
             products.push(Product);
-            
             res.status(200).json({success:true, data :products});
         }
     }
@@ -47,13 +45,11 @@ const getProductById = (req,res)=>{
     const id = req.params.id;
     
     const Product = products.find((product)=>{
-       
         if(product._id === Number(id)){
           return product;
-          
         }
     })
-    
+    console.log(Product)
     if(!Product){
         return res.status(404).json({success:false,msg:`Product with id ${id} does not exist`});
     }
@@ -64,8 +60,7 @@ const getProductById = (req,res)=>{
 const updateData = (req,res)=>{
     const id = req.query.id;
     const name = req.query.name;
-    
-    const Product = products.find(product=>(product._id === Number(id))product)
+    const Product = products.find(product=>(product._id === Number(id)))
     if(!Product){
         return res.status(401).json({success:false,message:`Product with id ${id} does nor exist so we cannot update it`})
     }
@@ -81,25 +76,10 @@ const updateData = (req,res)=>{
 const deleteData = (req,res)=>{
     const id = req.params.id;
     
-    Product = products.find(product=>(product._id === Number(id))product)
-    var index = products.findIndex(product=>(product._id === Number(id))product)
-    products.splice(index,1);
-    /*var newproducts = new Array();
+    Product = products.find(product=>(product._id === Number(id)))
+    var index = products.findIndex(product=>(product._id === Number(id)))
 
-        
-        for (var i = 0; i < products.length; i++) {
-          if (products[i]) {
-            newproducts.push(products[i]);
-          }
-        }
-    products = newproducts;*/
-    
-    /*const newProduct = products.filter((product)=>{
-        if(product._id !== Number(id)){
-          return product;
-          
-        }
-    })*/
+    products.splice(index,1);
     res.status(200).json({success:true,data :products});
 
 }
