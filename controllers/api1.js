@@ -38,20 +38,20 @@ const getAllProducts =
 const getProductById = async(req,res)=>{
     try{
         const id = req.params.id;
-        console.log(products.length)
-        console.log(products);
         var index = await products.findIndex(product=> {
             if(product._id === Number(id))
                 return product})
         if(index !== -1){
+        const newProduct = products[index]
             return res.status(200).json({
                         success:true, 
-                        data:products[index]
-            })  
+                        data: newProduct
+            }  
+        )
         }
         else{
-            const error = new Error(`Product with id ${req.params.id} does not  exists`)
-            throw error
+            const error = new Error('Please Provide valid Id')
+            throw error;
         }
     }
     catch(err){
@@ -64,24 +64,12 @@ const updateData = async(req,res)=>{
     try{
         const id = req.params.id;
         console.log(products.length)
+        const name = req.body.name 
         var index = await products.findIndex(product=> {
             if(product._id === Number(id))
             return product})
-        
-       if(index !== -1){
-            Product = await products.map((product)=>{
-                if(product._id === Number(id)){
-                    product.name = req.body.name
-                    
-                }
-                return product;
-            })
-            res.status(200).json({ success: true, data: products })
-       }
-        else{
-            const error = new Error(`Product with id ${req.params.id} does not  exists`)
-            throw error
-        }
+        products[index].name = name ;
+        res.status(200).json({ success: true, data: products })
     }
     catch(err){
         res.status(500).json({ message: err.message });
