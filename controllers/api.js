@@ -47,7 +47,7 @@ const getProduct = async(req,res)=>{
 const updateData = async(req,res)=>{
     try{
         const id = req.params._id;
-        const name = req.params.name;
+        const name = req.body.name;
         const Product = await products.find(product=>(product._id === Number(id)))
         if(!Product){
             return res.status(404).json({success:false,message:`Product with id ${id} does nor exist so we cannot update it`})

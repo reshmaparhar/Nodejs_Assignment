@@ -22,9 +22,11 @@ const getActualRequestDurationInMilliseconds = start => {
       current_datetime.getSeconds();
     let method = req.method;
     let url = req.url;
-    let status = res.statusCode;
+    
     const start = process.hrtime();
     const durationInMilliseconds = getActualRequestDurationInMilliseconds(start);
+    next();
+    let status = res.statusCode;
     let log = `[${formatted_date}] ${method}:${url} ${status} ${durationInMilliseconds.toLocaleString()} ms`;
     console.log(log);
     next();

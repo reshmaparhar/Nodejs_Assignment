@@ -18,7 +18,6 @@ const schemas = {
         "_id": joi.number().required()
     }),
     schema4:Joi.object().keys({
-        "_id": joi.number().required(),
         "name": joi.string().required()
     })
     
