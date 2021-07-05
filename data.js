@@ -1,5 +1,5 @@
 const products = [
-    {
+        {
         "_id": 1,
         "name": "Product 1",
         "price": 10,
@@ -13,6 +13,7 @@ const products = [
         "availableQuantity": 100,
         "manufacturer": "manufacturer 2"
     }
+    
 ]
 
 module.exports = products;       

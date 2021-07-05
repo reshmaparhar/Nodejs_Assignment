@@ -10,7 +10,16 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "localhost:3000/api",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api"
+					]
+				}
 			},
 			"response": []
 		},
@@ -20,14 +29,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/api/get/2",
+					"raw": "localhost:3000/api/2",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
 						"api",
-						"get",
 						"2"
 					]
 				}
@@ -37,9 +45,29 @@
 		{
 			"name": "Update_Product",
 			"request": {
-				"method": "GET",
+				"method": "PUT",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/4/Product ",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"4",
+						"Product "
+					]
+				}
 			},
 			"response": []
 		},
@@ -49,15 +77,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/api/delete/2",
+					"raw": "localhost:3000/api/3",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
 						"api",
-						"delete",
-						"2"
+						"3"
 					]
 				}
 			},
@@ -66,10 +93,19 @@
 		{
 			"name": "Get_Price",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"_id\":3,\n    \"quantityToBuy\":5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:3000/api/price?product_id=1&quantityToBuy=5",
+					"raw": "http://localhost:3000/api/price",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -78,16 +114,6 @@
 					"path": [
 						"api",
 						"price"
-					],
-					"query": [
-						{
-							"key": "product_id",
-							"value": "1"
-						},
-						{
-							"key": "quantityToBuy",
-							"value": "5"
-						}
 					]
 				}
 			},
@@ -98,38 +124,24 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n        \"_id\": 3,\n        \"name\": \"mango\",\n        \"price\": 10,\n        \"availableQuantity\": 100,\n        \"manufacturer\": \"manufacturer 3\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:3000/api/add?id=3&name=Product%203&price=15&availableQuantity=100&manufacturer=manufacturer3",
+					"raw": "http://localhost:3000/api",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
-						"add"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "3"
-						},
-						{
-							"key": "name",
-							"value": "Product%203"
-						},
-						{
-							"key": "price",
-							"value": "15"
-						},
-						{
-							"key": "availableQuantity",
-							"value": "100"
-						},
-						{
-							"key": "manufacturer",
-							"value": "manufacturer3"
-						}
+						"api"
 					]
 				}
 			},

@@ -1,42 +1,27 @@
 const { query } = require('express');
 let products = require('../data')
-const Joi = require('joi') 
-const joi = require("joi");
-const validation = joi.object({
-     "_id": joi.number().required(),
-     "name": joi.string().required(),
-     "price": joi.number().required(),
-     "availableQuantity": joi.number().required(),
-     "manufacturer": joi.string().required()
-})
-const options = {
-    abortEarly: false, 
-    allowUnknown: true,
-    stripUnknown: true 
-};
-const addProduct =async(req,res)=>{    
-    try{
-        const { error, value } = validation.validate(req.body,options);
-        if (error) {
-            return res.send(`Validation error: ${error.details.map(x => x.message).join(', ')}`);
-        } 
+
+const addProduct =async (req, res) => {
+    try {
         const OldProduct = await products.some(product => product._id === Number(req.body._id))
-        if(OldProduct){
+        if (OldProduct) {
             const error = `Product with id ${req.body._id} Already exists`
-            return res.json({success:false,message:error})
+            return res.status(409).json({ success: false, message: error })
         }
-        else{
-            products.splice(products.length, 0,req.body);
-            return res.status(200).json({success:true, data :products});
+        else {
+            products.splice(products.length, 0, req.body);
+            return res.status(200).json({ success: true, data: products });
         }
     }
-    catch(err){
-        res.status(500).json({ message: err.message });
+    catch (err) {
+        res.status(500).json({ success:false,message: err.message });
+
     }
 }
 const getProduct = async(req,res)=>{
     try{       
-        const id = req.params.id;
+        const id = req.params._id;
+        
         if(!id){
             return res.status(200).json({
                 success:true,
@@ -50,22 +35,22 @@ const getProduct = async(req,res)=>{
         })
         
         if(!Product){
-            return res.status(404).json({success:false,msg:`Product with id ${id} does not exist`});
+            return res.status(404).json({success:false,mesg:`Product with id ${id} does not exist`});
         }
         res.status(200).json({success:true,data : Product});
     }
     catch(err){
-        res.status(500).json({ message: err.message });
+        res.status(500).json({success:false, message: err.message });
     }
 } 
 
 const updateData = async(req,res)=>{
     try{
-        const id = req.query.id;
-        const name = req.query.name;
+        const id = req.params._id;
+        const name = req.params.name;
         const Product = await products.find(product=>(product._id === Number(id)))
         if(!Product){
-            return res.status(401).json({success:false,message:`Product with id ${id} does nor exist so we cannot update it`})
+            return res.status(404).json({success:false,message:`Product with id ${id} does nor exist so we cannot update it`})
         }
         const newProduct = await products.map((product)=>{
             if(product._id === Number(id)){
@@ -77,30 +62,30 @@ const updateData = async(req,res)=>{
         res.status(200).json({success:true,data:newProduct})
     }
     catch(err){
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ success:false,message: err.message });
     }
 };
 const deleteData = (req,res)=>{
     try{
-        const id = req.query.id;
+        const id = req.params._id;
         var index = products.findIndex(product=>(product._id === Number(id)))
         if(index !== -1){
             products.splice(index,1);
             res.status(200).json({success:true,data :products});
         }
         else{
-            return res.status(401).json({success:false,message:`Product with id ${id} does nor exist so we cannot delete it`})
+            return res.status(404).json({success:false,message:`Product with id ${id} does not exist so we cannot delete it`})
 
         }
     }
     catch(err){
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ success:false,message: err.message });
     }
 }
 const getPrice = (req,res)=>{
     try{ 
-        const product_id = req.query.product_id
-        const quantityToBuy = req.query.quantityToBuy
+        const product_id = req.body._id
+        const quantityToBuy = req.body.quantityToBuy
         const Product = products.find((product)=>{
             if(product._id === Number(product_id)){
                 product.availableQuantity = product.availableQuantity - quantityToBuy
@@ -109,7 +94,7 @@ const getPrice = (req,res)=>{
             }
         })
         if(!Product){
-            res.status(404).json({success:false,msg:`Product with id ${product_id} does not exist`});
+            res.status(400).json({success:false,msg:`Product with id ${product_id} does not exist`});
         }
         const Newproduct ={
             "_id": Product._id,
@@ -121,7 +106,7 @@ const getPrice = (req,res)=>{
         res.status(200).json({success:true,data : Newproduct});
     }
     catch(err){
-        res.status(500).json({ message: err.message });
+        res.status(500).json({success:false,message: err.message });
     }
 }
 module.exports = {
