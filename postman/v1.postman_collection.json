@@ -11,11 +11,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/api",
+					"raw": "localhost:4000/api",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "4000",
 					"path": [
 						"api"
 					]
@@ -25,18 +25,25 @@
 		},
 		{
 			"name": "GetProductById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "localhost:3000/api/2",
+					"raw": "localhost:4000/api/3",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "4000",
 					"path": [
 						"api",
-						"2"
+						"3"
 					]
 				}
 			},
@@ -49,7 +56,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\n    \"name\":\"Product 2\"\n \n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -57,15 +64,21 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/4/Product ",
+					"raw": "localhost:4000/api/2",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "4000",
 					"path": [
 						"api",
-						"4",
-						"Product "
+						"2"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "reshma",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -77,11 +90,11 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/api/3",
+					"raw": "localhost:4000/api/3",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "4000",
 					"path": [
 						"api",
 						"3"
@@ -97,7 +110,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"_id\":3,\n    \"quantityToBuy\":5\n}",
+					"raw": "{\n    \"_id\":2,\n   \n    \"quantityToBuy\":10\n    \n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -105,12 +118,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/price",
+					"raw": "http://localhost:4000/api/price",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "4000",
 					"path": [
 						"api",
 						"price"
@@ -126,7 +139,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "  {\n        \"_id\": 3,\n        \"name\": \"mango\",\n        \"price\": 10,\n        \"availableQuantity\": 100,\n        \"manufacturer\": \"manufacturer 3\"\n    }",
+					"raw": "  {\n        \"_id\" : 3,\n        \"name\":\"Product 4\",\n        \"price\": 10,\n        \"availableQuantity\": 100,\n        \"manufacturer\": \"manufacturer 3\"\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -134,14 +147,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api",
+					"raw": "http://localhost:4000/api/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "4000",
 					"path": [
-						"api"
+						"api",
+						""
 					]
 				}
 			},
