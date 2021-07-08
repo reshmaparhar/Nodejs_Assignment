@@ -1,8 +1,8 @@
 const upper = require('../helpers/uppercase')
+const responseFunction = require('../helpers/response')
 const hello = (req,res)=>{
     const data = upper(req.query.name);
-    console.log(req.params)
     message = `hello ${ upper(data)}`  ;
-    return res.json({success:true,data:data});
+    return res.json(responseFunction(true,"Name converted to upper case successfully",data));
 }
 module.exports = hello;
