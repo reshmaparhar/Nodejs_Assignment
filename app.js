@@ -1,17 +1,13 @@
 const express = require('express');
-const app = express();
-//const logger = require('./logger')
-const products = require('./data')
-const {schema} = require('./schema'); 
-const api = require('./routes/api')
-app.use(express.urlencoded({extended: false}) )
-app.use(express.json())
-//app.use(logger)
-var morgan = require('morgan')
-app.use(morgan('combined'))
-
-app.use('/api',api)
-
-app.listen(3000,()=>{
-    console.log('listening on port 3000');
+const myapp = express();
+const  mongoose = require('mongoose')
+const logger = require("./middlewares/logger");
+const {port} = require('./config/config');
+const connectDB = require('./config/database')
+connectDB();
+const routes = require("./routers/routes")
+myapp.use(logger)
+myapp.use('/api', routes);
+myapp.listen(port,()=>{
+    console.log(`App is listening on port ${port}`);
 })
