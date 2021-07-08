@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const products = require('../data')
-const middleware = require('../req.body.validator'); 
-const middleware1 = require('../req.params.validator'); 
+const middleware = require('../middleware/req.body.validator'); 
+const middleware1 = require('../middleware/req.params.validator'); 
 
 const {schemas} = require('../schema'); 
 
