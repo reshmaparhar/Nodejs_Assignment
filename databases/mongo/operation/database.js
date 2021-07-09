@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {db} = require('./config');
+const {db} = require('../../../config/config');
 const connectDB = async()=>{
   const conn = await mongoose.connect(db.uri,{
     useNewUrlParser: true,
