@@ -23,19 +23,16 @@ const AddProduct = (req, res,next) => {
     
     
  }
-const getProduct = (req,res)=>{
-    Product.find()
-    .then(
-
-        (product) => {
-          res.status(200).json(responseFunction(true,"Products fetched successfully",product));
-        }
-      )
-      .catch(
+const getProduct = async(req,res)=>{
+    try{
+        const product = await Product.find()
+        res.status(200).json(responseFunction(true,"Products fetched successfully",product));
+    }
+    catch{
         (error) => {
           res.status(400).json(responseFunction(false,error.message,null));
         }
-      );
+    };
 } 
 
 const updateProduct = async(req,res)=>{
