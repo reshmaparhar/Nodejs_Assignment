@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
-const hello = require('../controller/hello');
-router.route('/:id').get(hello);
+const validation = require('../middlewares/validator/validation');
+const schemas = require('../middlewares/validator/schema');
+const {AddProduct, updateProduct,deleteProduct,getProduct,getProductById}= require('../controller/user.js');
+router.route('/getProduct').get(getProduct);
+router.route('/product').post(validation(schemas.Add_Product),AddProduct);
+router.route('/:_id').get(validation(schemas.GetId),getProductById).delete(validation(schemas.GetId),deleteProduct).put(validation(schemas.EditProduct),updateProduct);
 module.exports = router;

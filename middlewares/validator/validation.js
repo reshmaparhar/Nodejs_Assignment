@@ -1,12 +1,16 @@
-const responseFunction = require('../../helpers/response')
+const responseFunction = require("../../helpers/response");
+
 const validation = (schema)=>{
-    return((req,res,next)=>{
-        const {error} = schema.validate(req) ;
+    return (req, res, next) => { 
+
+        const {error} = schema.validate(req);
         if(error){
-            res.json(responseFunction(false,error.message,null));
+            return res.json(responseFunction(false,error.message,null))
         }
         else{
             next();
         }
-    })
+    }
 }
+
+module.exports = validation;
