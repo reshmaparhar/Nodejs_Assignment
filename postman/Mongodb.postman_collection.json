@@ -23,11 +23,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:4000/api/getProduct",
+					"raw": "localhost:10000/api/getProduct",
 					"host": [
 						"localhost"
 					],
-					"port": "4000",
+					"port": "10000",
 					"path": [
 						"api",
 						"getProduct"
@@ -43,7 +43,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"_id\":7,\n    \"name\": \"Product 4\",\n    \"price\": 15,\n    \"availableQuantity\": 195,\n    \"manufacturer\": \"manufacturer 4\"\n}",
+					"raw": "{\n    \"_id\":17,\n    \"name\": \"Product 33\",\n    \"price\": 15,\n    \"availableQuantity\": 195,\n    \"manufacturer\": \"manufacturer 4\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -51,11 +51,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:4000/api/product",
+					"raw": "localhost:10000/api/product",
 					"host": [
 						"localhost"
 					],
-					"port": "4000",
+					"port": "10000",
 					"path": [
 						"api",
 						"product"
@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Product 7\"\n}",
+					"raw": "{\n    \"name\":\"Product 17\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,14 +79,42 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:4000/api/7",
+					"raw": "localhost:4000/api/17",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
 						"api",
-						"7"
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n    \"mobileNumber\":\"7028167800\",\n    \"password\":\"reshmaparhar\"\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:10000/userapi/user",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"userapi",
+						"user"
 					]
 				}
 			},
@@ -98,14 +126,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:4000/api/7",
+					"raw": "localhost:4000/api/10",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
 						"api",
-						"7"
+						"10"
 					]
 				}
 			},
@@ -117,14 +145,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:4000/api/5",
+					"raw": "localhost:4000/api/17",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
 						"api",
-						"5"
+						"17"
 					]
 				}
 			},

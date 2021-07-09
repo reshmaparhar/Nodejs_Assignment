@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-var mongooseTypePhone = require('mongoose-type-phone');
+
 
 const User = mongoose.Schema({
     "_id": {

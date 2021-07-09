@@ -2,38 +2,33 @@ const { query } = require('express');
 const responseFunction = require('../helpers/response')
 const Product = require('../databases/mongo/models/Product');
 
-const AddProduct = (req, res) => {
-   /*try{
+const AddProduct = async(req, res) => {
+   try{
        const product = new Product(req.body);
-        product.save()
+        await product.save()
         res.status(201).json(responseFunction(true,"Product added Successfully",product))
        
      
    }
-    catch{(error)=>{
-               res.status(400).json(responseFunction(false,error.message,null))
-    }}*/
-    const product = new Product(req.body);
-    product.save()
-    .then (()=>{
-        res.status(201).json(responseFunction(true,"Product added Successfully",product));
-    })
-    .catch(err=>{
-        res.status(400).json(responseFunction(false,error.message,null))
-    })
-    
-    
- }
+    catch(error){
+        if(error.code == 11000){
+               res.status(400).json(responseFunction(false," Product already exists in database",null));
+        }
+        else{
+            res.status(400).json(responseFunction(false,error.message,null));
+        }
+    }
+}
+
 const getProduct = async(req,res)=>{
     try{
         const product = await Product.find()
         res.status(200).json(responseFunction(true,"Products fetched successfully",product));
     }
-    catch{
-        (error) => {
+    catch(error){
           res.status(400).json(responseFunction(false,error.message,null));
-        }
-    };
+    }
+    
 } 
 
 const updateProduct = async(req,res)=>{
@@ -46,9 +41,9 @@ const updateProduct = async(req,res)=>{
             res.json(responseFunction(false,`Product with id ${req.params._id} does not exists in database`,null))
         }
     }
-    catch {(error)=>{
+    catch(error){
         res.json(responseFunction(false,error.message,null))
-    }}
+    }
 };
 const deleteProduct = async(req,res)=>{
     try{
@@ -60,9 +55,9 @@ const deleteProduct = async(req,res)=>{
             res.json(responseFunction(false,`Product with id ${req.params._id} does not exists in database`,null))
         }
     }
-    catch{(error)=>{
+    catch(error){
         res.json(responseFunction(false,error.message,null))
-    }}
+    }
 }
 const getProductById = async(req,res)=>{
     try{
@@ -74,10 +69,10 @@ const getProductById = async(req,res)=>{
             res.json(responseFunction(false,`Product with id ${req.params._id} does not exists in database`,null))
         }
     }
-    catch{(error)=>{
+    catch(error){
         res.json(responseFunction(false,error.message,null))
-        }
     }
+    
 
 }
 
