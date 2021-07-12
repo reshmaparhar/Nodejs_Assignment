@@ -34,7 +34,7 @@ const PlaceOrder =async(req,res)=>{
                         }
             }
             else{
-                return res.json(responseFunction(false,`Sorry !! User with this id does not exists in database`,null))
+                return res.json(responseFunction(false,`Sorry !! Product with this id does not exists in database`,null))
             }
         }
         else{
