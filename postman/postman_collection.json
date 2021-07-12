@@ -43,7 +43,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"_id\":17,\n    \"name\": \"Product 33\",\n    \"price\": 15,\n    \"availableQuantity\": 195,\n    \"manufacturer\": \"manufacturer 4\"\n}",
+					"raw": "{\n    \"_id\":18,\n    \"name\": \"Product 33\",\n    \"price\": 15,\n    \"availableQuantity\": 195,\n    \"manufacturer\": \"manufacturer 4\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,11 +79,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:4000/api/17",
+					"raw": "localhost:10000/api/17",
 					"host": [
 						"localhost"
 					],
-					"port": "4000",
+					"port": "10000",
 					"path": [
 						"api",
 						"17"
@@ -99,7 +99,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \n    \"mobileNumber\":\"7028167800\",\n    \"password\":\"reshmaparhar\"\n    \n}",
+					"raw": "{\n    \n    \"mobileNumber\":\"7700025262\",\n    \"password\":\"reshmaparhar\"\n    \n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -126,14 +126,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:4000/api/10",
+					"raw": "localhost:10000/api/18",
 					"host": [
 						"localhost"
 					],
-					"port": "4000",
+					"port": "10000",
 					"path": [
 						"api",
-						"10"
+						"18"
 					]
 				}
 			},
@@ -145,14 +145,42 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:4000/api/17",
+					"raw": "localhost:10000/api/17",
 					"host": [
 						"localhost"
 					],
-					"port": "4000",
+					"port": "10000",
 					"path": [
 						"api",
 						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place_Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n\n{\n    \"userId\":\"60ebe9467a521a24b523e97e\",\n    \"productId\":6\n\n\n    ,\n    \"quantity\":15\n\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:10000/order/",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"order",
+						""
 					]
 				}
 			},
