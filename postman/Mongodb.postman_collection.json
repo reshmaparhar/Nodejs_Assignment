@@ -185,6 +185,35 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "getOrder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:10000/order/60e82a3a074b796ee68523c5?limit=50&page=1",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"order",
+						"60e82a3a074b796ee68523c5"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "50"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

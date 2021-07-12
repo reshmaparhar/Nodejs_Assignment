@@ -52,15 +52,13 @@ const PlaceOrder = async (req, res) => {
 const getOrder = async (req, res) => {
     try {
         const orderDetails = [];
-        var limit = parseInt(req.query.limit);
-        var skip = (parseInt(req.query.page) - 1) * parseInt(limit);
-        console.log(limit);
-        console.log(skip);
+        var limit = Number(req.query.limit);
+        var skip = (Number(req.query.page) - 1) * Number(limit);
+        
         const user = await User.findById(req.params.userId);
         if (user) {
             const order_detail = {};
-            const orders = await Order.find().skip(skip).limit(limit);
-            console.log(orders)
+            const orders = await Order.find({'orderCreatedBy': req.params.userId}).skip(skip).limit(limit);
             for (var i in orders) {
                 order_detail.order = orders[i];
                 product = await Product.findById(orders[i].productId);
