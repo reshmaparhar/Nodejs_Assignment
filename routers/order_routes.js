@@ -5,5 +5,5 @@ const validation = require('../middlewares/validator/validation');
 const schemas = require('../middlewares/validator/OrderSchema');
 const {PlaceOrder,getOrder} = require('../controller/Order')
 router.route('/').post(validation(schemas.Place_Order),PlaceOrder)
-router.route('/:userId').get(getOrder);
+router.route('/:userId').get(validation(schemas.Get_Order),getOrder);
 module.exports = router;

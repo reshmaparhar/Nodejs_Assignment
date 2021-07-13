@@ -57,9 +57,10 @@ const getOrder = async (req, res) => {
         
         const user = await User.findById(req.params.userId);
         if (user) {
-            const order_detail = {};
+            
             const orders = await Order.find({'orderCreatedBy': req.params.userId}).skip(skip).limit(limit);
             for (var i in orders) {
+                let order_detail = {};
                 order_detail.order = orders[i];
                 product = await Product.findById(orders[i].productId);
                 order_detail.productName = product.name;

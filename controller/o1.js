@@ -44,4 +44,35 @@ const PlaceOrder =async(req,res)=>{
         res.json(responseFunction(false,error.message,null))
     }
 };
-module.exports = PlaceOrder;
+const getOrder = async (req, res) => {
+    try {
+        const orderDetails = [];
+        var limit = Number(req.query.limit);
+        var skip = (Number(req.query.page) - 1) * Number(limit);
+        
+        const user = await finduser(req.params.userId);
+        if (user) {
+            
+            const orders = await Order.find({'orderCreatedBy': req.params.userId}).skip(skip).limit(limit);
+            console.log(orders)
+            for (var i in orders) {
+                let order_detail = {};
+
+                order_detail.order = orders[i];
+                product = await findproduct(orders[i].productId);
+                order_detail.productName = product.name;
+                orderDetails.push(order_detail);
+            }
+            console.log(orderDetails);
+            return res.json(responseFunction(true, `Details fetched successfully`, orderDetails));
+        }
+        else {
+            return res.json(responseFunction(false, `Sorry !! user with this id does not exists in database`, null))
+        }
+    }
+    catch (err) {
+        res.json(responseFunction(false, error.message, null))
+    }
+}
+
+module.exports = {PlaceOrder,getOrder};

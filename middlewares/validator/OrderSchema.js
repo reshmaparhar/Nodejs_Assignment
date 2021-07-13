@@ -8,5 +8,15 @@ const schemas = {
         
      }).unknown(),
     }).unknown(true),
+    Get_Order:joi.object().keys({
+        params:joi.object().keys({
+        "userId": joi.string().required()
+        }),
+        query:joi.object().keys({
+            "page":joi.number().required(),
+            "limit":joi.number().required()  
+        })
+
+    }).unknown()
 }
 module.exports = schemas;
