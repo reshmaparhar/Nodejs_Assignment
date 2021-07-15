@@ -17,6 +17,14 @@ const schemas = {
             "limit":joi.number().required()  
         })
 
+    }).unknown(),
+    Get_Count:joi.object().keys({
+        
+        query:joi.object().keys({
+            "page":joi.number().required(),
+            "limit":joi.number().required()  
+        })
+
     }).unknown()
 }
 module.exports = schemas;

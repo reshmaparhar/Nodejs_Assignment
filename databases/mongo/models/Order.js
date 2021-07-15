@@ -12,7 +12,7 @@ const Order = mongoose.Schema({
         type:Number,
         ref:'Product', 
         required: true
-        
+            
     },
     "quanity": {
         type:Number

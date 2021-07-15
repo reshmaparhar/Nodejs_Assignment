@@ -2,7 +2,10 @@ const { query } = require('express');
 const responseFunction = require('../helpers/response')
 const { findproductbyid, UpdateProduct } = require('../databases/mongo/operation/Product')
 const { finduserbyid } = require('../databases/mongo/operation/User');
-const { findOrders, addOrder } = require('../databases/mongo/operation/order')
+const { findOrders, addOrder,getorderscountbyuser } = 
+require('../databases/mongo/operation/order')
+const Order = require('../databases/mongo/models/Order');
+
 const PlaceOrder = async (req, res) => {
     try {
         const user = await finduserbyid(req.body.userId)
@@ -61,5 +64,54 @@ const getOrder = async (req, res) => {
         res.json(responseFunction(false, error.message, null))
     }
 }
+const getOrdersCountbyUser = async(req,res)=>{
+    try{
+        var limit = Number(req.query.limit);
+        var skip = (Number(req.query.page) - 1) * Number(limit);
+        const orders = await Order.aggregate([
+            
+                {$group:{ _id :"$orderCreatedBy",count:{$sum:1}}},
+                {$skip:skip},
+                {$limit:limit}
+            ])
+            return res.json(responseFunction(true, `Details fetched successfully`, orders));
+       
 
-module.exports = { PlaceOrder, getOrder };
+    }
+    catch(error){
+        res.json(responseFunction(false, error.message, null))
+    }
+}
+const getOrdersCountbyProducts = async(req,res)=>{
+    try{
+        var limit = Number(req.query.limit);
+        var skip = (Number(req.query.page) - 1) * Number(limit);
+        var lookup =  {
+            $lookup:{
+            from: "products", 
+            localField:"productId", 
+            foreignField:"_id",
+            as:'myCustomResult'},
+        }
+        const orders = await Order.aggregate([
+               lookup,
+               {
+
+                  $group:{ _id :{"productId":"$productId","name":"$myCustomResult.name"},orderscount:{$sum:1}}
+              },
+                
+                {$skip:skip},
+                {$limit:limit},
+                
+        ])
+        
+        return res.json(responseFunction(true, `Details fetched successfully`, orders));
+       }
+    
+    catch(error){
+        res.json(responseFunction(false, error.message, null))
+    }
+}
+
+
+module.exports = { PlaceOrder, getOrder , getOrdersCountbyUser,getOrdersCountbyProducts};

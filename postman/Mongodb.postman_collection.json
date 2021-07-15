@@ -43,7 +43,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"_id\":18,\n    \"name\": \"Product 33\",\n    \"price\": 15,\n    \"availableQuantity\": 195,\n    \"manufacturer\": \"manufacturer 4\"\n}",
+					"raw": "{\n    \"_id\":21,\n    \"name\": \"Product 21\",\n    \"price\": 15,\n    \"availableQuantity\": 195,\n    \"manufacturer\": \"manufacturer 4\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Product 17\"\n}",
+					"raw": "{\n\n    \"name\":\"Product - 21\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,14 +79,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:10000/api/17",
+					"raw": "localhost:10000/api/21",
 					"host": [
 						"localhost"
 					],
 					"port": "10000",
 					"path": [
 						"api",
-						"17"
+						"21"
 					]
 				}
 			},
@@ -99,7 +99,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \n    \"mobileNumber\":\"7700025262\",\n    \"password\":\"reshmaparhar\"\n    \n}",
+					"raw": "{\n    \n    \"mobileNumber\":\"9980892926\",\n    \"password\":\"reshmaparhar\"\n    \n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -126,14 +126,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:10000/api/18",
+					"raw": "localhost:10000/api/21",
 					"host": [
 						"localhost"
 					],
 					"port": "10000",
 					"path": [
 						"api",
-						"18"
+						"21"
 					]
 				}
 			},
@@ -145,14 +145,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:10000/api/17",
+					"raw": "localhost:10000/api/1",
 					"host": [
 						"localhost"
 					],
 					"port": "10000",
 					"path": [
 						"api",
-						"17"
+						"1"
 					]
 				}
 			},
@@ -165,7 +165,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "\n\n{\n    \"userId\":\"60ebe9467a521a24b523e97e\",\n    \"productId\":6\n\n\n    ,\n    \"quantity\":15\n\n}\n",
+					"raw": "\n\n{\n    \"userId\":\"60efe7120503b39dc41dd577\",\n    \"productId\":34,\n    \"quantity\":10\n\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -192,19 +192,77 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:10000/order/60e82a3a074b796ee68523c5?limit=50&page=1",
+					"raw": "localhost:10000/order/60e82d8edb2bf073bb412d11?limit=3&page=1",
 					"host": [
 						"localhost"
 					],
 					"port": "10000",
 					"path": [
 						"order",
-						"60e82a3a074b796ee68523c5"
+						"60e82d8edb2bf073bb412d11"
 					],
 					"query": [
 						{
 							"key": "limit",
-							"value": "50"
+							"value": "3"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getorderscountbyuser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:10000/order/orderscountbyuser?limit=5&page=1",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"order",
+						"orderscountbyuser"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getorderscountbyproduct",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:10000/order/orderscountbyproduct?limit=4&page=1",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"order",
+						"orderscountbyproduct"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "4"
 						},
 						{
 							"key": "page",
