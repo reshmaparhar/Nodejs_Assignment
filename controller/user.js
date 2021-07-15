@@ -1,27 +1,24 @@
 const { query } = require('express');
 const responseFunction = require('../helpers/response')
-const User = require('../databases/mongo/models/user')
 const mongoose = require('mongoose');
-const AddUser = async(req,res)=>{
+const { adduser } = require('../databases/mongo/operation/User');
+const AddUser = async (req, res) => {
 
-        try{
-           
-            const user = new User({
-                
-                "_id":mongoose.Types.ObjectId(),
-                "mobileNumber":req.body.mobileNumber,
-                "password":req.body.password
-                })
-            await user.save()
-            return res.status(201).json(responseFunction(true,"User added Successfully",user));
-        }
-        catch(error){
-            if(error.code === 11000){
-                return res.status(400).json(responseFunction(false,"User with this Phone Number already exists in database",null));
-            }
-            return res.status(400).json(responseFunction(false,error,null));
-        }
-     
-  }
+    try {
+       
+        const user = await adduser(req.body)
+        if (user) {
+            return res.status(201).json(responseFunction(true, "User added Successfully", user))
+         }     
+        else {
+            return res.status(400).json(responseFunction(false, "User already exists in database", null));
 
-  module.exports = AddUser;
+        }
+    }
+    catch (error) {
+        return res.status(400).json(responseFunction(false, error.message, null));
+    }
+
+}
+
+module.exports = AddUser;

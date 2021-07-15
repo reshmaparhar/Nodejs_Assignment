@@ -1,28 +1,32 @@
 const { query } = require('express');
 const responseFunction = require('../helpers/response')
 const Product = require('../databases/mongo/models/Product');
-
+const {findproduct,
+    findproductbyid,
+    UpdateProduct,
+    deleteproduct,
+    addproduct} = require('../databases/mongo/operation/Product')
 const AddProduct = async(req, res) => {
    try{
-       const product = new Product(req.body);
-        await product.save()
-        res.status(201).json(responseFunction(true,"Product added Successfully",product))
        
+        const product = await addproduct(req.body)
+        if(product){
+            return res.status(201).json(responseFunction(true,"Product added Successfully",product))
+        }
+        else{
+            return res.status(400).json(responseFunction(false,"Product already exists in database",null));
+        }
      
    }
     catch(error){
-        if(error.code == 11000){
-               res.status(400).json(responseFunction(false," Product already exists in database",null));
-        }
-        else{
-            res.status(400).json(responseFunction(false,error.message,null));
-        }
+        res.status(400).json(responseFunction(false,error.message,null));
+        
     }
 }
 
 const getProduct = async(req,res)=>{
     try{
-        const product = await Product.find()
+        const product = await findproduct();
         res.status(200).json(responseFunction(true,"Products fetched successfully",product));
     }
     catch(error){
@@ -33,7 +37,7 @@ const getProduct = async(req,res)=>{
 
 const updateProduct = async(req,res)=>{
     try{
-        product = await Product.findByIdAndUpdate(req.params._id,{"name":req.body.name},{new: true})
+        product = await UpdateProduct(req.params._id,{"name":req.body.name})
         if (product){
         res.json(responseFunction(true,`Product with id ${req.params._id} updated  Successfully`,product))
         }
@@ -47,7 +51,7 @@ const updateProduct = async(req,res)=>{
 };
 const deleteProduct = async(req,res)=>{
     try{
-        product = await Product.findByIdAndDelete(req.params._id)
+        product = await deleteproduct(req.params._id)
         if(product){
             res.json(responseFunction(true,`Product with id ${req.params._id} deleted Successfully`,product))
         }
@@ -61,7 +65,7 @@ const deleteProduct = async(req,res)=>{
 }
 const getProductById = async(req,res)=>{
     try{
-        const product = await Product.findById(req.params._id)
+        const product = await findproductbyid(req.params._id)
         if(product){
             res.json(responseFunction(true,`Product with id ${req.params._id} fetched Successfully`,product));
         }

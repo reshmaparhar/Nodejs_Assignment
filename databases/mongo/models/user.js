@@ -2,9 +2,7 @@ const mongoose = require('mongoose');
 
 
 const User = mongoose.Schema({
-    "_id": {
-        type:mongoose.Types.ObjectId
-    },
+    
     "mobileNumber":{
         type:String ,
         length:10,
