@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "GetAllProducts",
+			"name": "getAllProducts",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -37,13 +37,13 @@
 			"response": []
 		},
 		{
-			"name": "AddProduct",
+			"name": "addProduct",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"_id\":21,\n    \"name\": \"Product 21\",\n    \"price\": 15,\n    \"availableQuantity\": 195,\n    \"manufacturer\": \"manufacturer 4\"\n}",
+					"raw": "{\n    \"_id\":22,\n    \"name\": \"Product 22\",\n    \"price\": 15,\n    \"availableQuantity\": 195,\n    \"manufacturer\": \"manufacturer 4\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -65,13 +65,13 @@
 			"response": []
 		},
 		{
-			"name": "UpdateProduct",
+			"name": "updateProduct",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\n    \"name\":\"Product - 21\"\n}",
+					"raw": "{\n\n    \"name\":\"Product - 22\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,27 +79,27 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:10000/api/21",
+					"raw": "localhost:10000/api/22",
 					"host": [
 						"localhost"
 					],
 					"port": "10000",
 					"path": [
 						"api",
-						"21"
+						"22"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Add User",
+			"name": "addUser",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \n    \"mobileNumber\":\"9980892926\",\n    \"password\":\"reshmaparhar\"\n    \n}",
+					"raw": "{\n    \n    \"mobileNumber\":\"3980892926\",\n    \"password\":\"reshmaparhar\"\n    \n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -121,26 +121,26 @@
 			"response": []
 		},
 		{
-			"name": "DeleteProduct",
+			"name": "deleteProduct",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:10000/api/21",
+					"raw": "localhost:10000/api/22",
 					"host": [
 						"localhost"
 					],
 					"port": "10000",
 					"path": [
 						"api",
-						"21"
+						"22"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "GetProductById",
+			"name": "getProductById",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -159,13 +159,13 @@
 			"response": []
 		},
 		{
-			"name": "Place_Order",
+			"name": "placeOrder",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "\n\n{\n    \"userId\":\"60efe7120503b39dc41dd577\",\n    \"productId\":34,\n    \"quantity\":10\n\n}\n",
+					"raw": "\n\n{\n    \"userId\":\"60f01ac21dca1cec9fe5cb07\",\n    \"productId\":34,\n    \"quantity\":10\n\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -192,14 +192,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:10000/order/60e82d8edb2bf073bb412d11?limit=3&page=1",
+					"raw": "localhost:10000/order/60f01ac21dca1cec9fe5cb07?limit=3&page=1",
 					"host": [
 						"localhost"
 					],
 					"port": "10000",
 					"path": [
 						"order",
-						"60e82d8edb2bf073bb412d11"
+						"60f01ac21dca1cec9fe5cb07"
 					],
 					"query": [
 						{
@@ -216,7 +216,7 @@
 			"response": []
 		},
 		{
-			"name": "getorderscountbyuser",
+			"name": "getOrdersCountByuser",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -245,7 +245,7 @@
 			"response": []
 		},
 		{
-			"name": "getorderscountbyproduct",
+			"name": "getOrdersCountbyProduct",
 			"request": {
 				"method": "GET",
 				"header": [],

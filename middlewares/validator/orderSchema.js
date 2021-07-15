@@ -1,14 +1,14 @@
 const joi = require("joi");
 
 const schemas = {
-    Place_Order:joi.object().keys({
+    placeOrder:joi.object().keys({
        body : joi.object().keys({
         "productId": joi.number().required(),
         "quantity": joi.number().required()
         
      }).unknown(),
     }).unknown(true),
-    Get_Order:joi.object().keys({
+    getOrder:joi.object().keys({
         params:joi.object().keys({
         "userId": joi.string().required()
         }),
@@ -18,7 +18,7 @@ const schemas = {
         })
 
     }).unknown(),
-    Get_Count:joi.object().keys({
+    getCount:joi.object().keys({
         
         query:joi.object().keys({
             "page":joi.number().required(),

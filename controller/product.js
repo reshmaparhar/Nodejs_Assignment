@@ -1,15 +1,14 @@
 const { query } = require('express');
 const responseFunction = require('../helpers/response')
-const Product = require('../databases/mongo/models/Product');
-const {findproduct,
-    findproductbyid,
-    UpdateProduct,
-    deleteproduct,
-    addproduct} = require('../databases/mongo/operation/Product')
-const AddProduct = async(req, res) => {
+const {findProduct,
+    findProductById,
+    updateProductById,
+    deleteProductById,
+    addNewProduct} = require('../databases/mongo/operation/product')
+const addProduct = async(req, res) => {
    try{
        
-        const product = await addproduct(req.body)
+        const product = await addNewProduct(req.body)
         if(product){
             return res.status(201).json(responseFunction(true,"Product added Successfully",product))
         }
@@ -26,7 +25,7 @@ const AddProduct = async(req, res) => {
 
 const getProduct = async(req,res)=>{
     try{
-        const product = await findproduct();
+        const product = await findProduct();
         res.status(200).json(responseFunction(true,"Products fetched successfully",product));
     }
     catch(error){
@@ -37,7 +36,7 @@ const getProduct = async(req,res)=>{
 
 const updateProduct = async(req,res)=>{
     try{
-        product = await UpdateProduct(req.params._id,{"name":req.body.name})
+        product = await updateProductById(req.params._id,{"name":req.body.name})
         if (product){
         res.json(responseFunction(true,`Product with id ${req.params._id} updated  Successfully`,product))
         }
@@ -51,7 +50,7 @@ const updateProduct = async(req,res)=>{
 };
 const deleteProduct = async(req,res)=>{
     try{
-        product = await deleteproduct(req.params._id)
+        product = await deleteProductById(req.params._id)
         if(product){
             res.json(responseFunction(true,`Product with id ${req.params._id} deleted Successfully`,product))
         }
@@ -65,7 +64,7 @@ const deleteProduct = async(req,res)=>{
 }
 const getProductById = async(req,res)=>{
     try{
-        const product = await findproductbyid(req.params._id)
+        const product = await findProductById(req.params._id)
         if(product){
             res.json(responseFunction(true,`Product with id ${req.params._id} fetched Successfully`,product));
         }
@@ -83,7 +82,7 @@ const getProductById = async(req,res)=>{
 module.exports = {
     updateProduct,
     deleteProduct,
-    AddProduct,
+    addProduct,
     getProduct,
     getProductById
     

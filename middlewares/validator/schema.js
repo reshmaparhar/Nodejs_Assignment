@@ -1,7 +1,7 @@
 const joi = require("joi");
 
 const schemas = {
-    Add_Product:joi.object().keys({
+    addNewProduct:joi.object().keys({
        body : joi.object().keys({
         "_id":joi.number().required(),
         "name": joi.string().required(),
@@ -10,12 +10,12 @@ const schemas = {
         "manufacturer": joi.string().required()
      })
     }).unknown(),
-    GetId:joi.object().keys({
+    getId:joi.object().keys({
         params:joi.object().keys({
         "_id": joi.number().required()
      })
     }).unknown()  ,
-    EditProduct:joi.object().keys({
+    editProduct:joi.object().keys({
         params: joi.object().keys({
         "_id": joi.number().required()
         }),

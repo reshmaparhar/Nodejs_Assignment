@@ -1,23 +1,22 @@
 const { networkInterfaces } = require('os');
-const Product = require('../models/Product');
-const findproduct = async (productId)=>{         
+const Product = require('../models/product');
+const findProduct = async (productId)=>{         
     const product = await  Product.find();
     return product;
 }
-const findproductbyid= async (productId)=>{         
+const findProductById= async (productId)=>{         
     const product = await  Product.findById(productId)
     return product;
 }
-const UpdateProduct= async(productId,newvalue)=>{
-    //await Product.findByIdAndUpdate(productId, {"availableQuantity":newquantity},{new: true})
+const updateProductById= async(productId,newvalue)=>{
     const product = await Product.findByIdAndUpdate(productId, newvalue,{new: true})
     return product;
 }
-const deleteproduct = async(productId)=>{
+const deleteProductById = async(productId)=>{
     const product = await Product.findByIdAndDelete(productId)
     return product;
 }
-const addproduct = async(newProduct)=>{
+const addNewProduct = async(newProduct)=>{
     try{
         const product = new Product(newProduct);
         await product.save()
@@ -31,9 +30,9 @@ const addproduct = async(newProduct)=>{
         
 }
 module.exports = {
-    findproduct,
-    findproductbyid,
-    UpdateProduct,
-    deleteproduct,
-    addproduct
+    findProduct,
+    findProductById,
+    updateProductById,
+    deleteProductById,
+    addNewProduct
 }

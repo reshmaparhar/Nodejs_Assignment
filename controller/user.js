@@ -1,12 +1,12 @@
 const { query } = require('express');
 const responseFunction = require('../helpers/response')
 const mongoose = require('mongoose');
-const { adduser } = require('../databases/mongo/operation/User');
-const AddUser = async (req, res) => {
+const { addNewUser } = require('../databases/mongo/operation/User');
+const addUser = async (req, res) => {
 
     try {
        
-        const user = await adduser(req.body)
+        const user = await addNewUser(req.body)
         if (user) {
             return res.status(201).json(responseFunction(true, "User added Successfully", user))
          }     
@@ -21,4 +21,4 @@ const AddUser = async (req, res) => {
 
 }
 
-module.exports = AddUser;
+module.exports = addUser;
