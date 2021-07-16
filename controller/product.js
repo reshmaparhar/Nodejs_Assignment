@@ -8,7 +8,7 @@ const {findProduct,
 const addProduct = async(req, res) => {
    try{
        
-        const product = await addNewProduct(req.body)
+        const product = await addNewProduct(req)
         if(product){
             return res.status(201).json(responseFunction(true,"Product added Successfully",product))
         }

@@ -187,35 +187,6 @@
 			"response": []
 		},
 		{
-			"name": "getOrder",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:10000/order/60f01ac21dca1cec9fe5cb07?limit=3&page=1",
-					"host": [
-						"localhost"
-					],
-					"port": "10000",
-					"path": [
-						"order",
-						"60f01ac21dca1cec9fe5cb07"
-					],
-					"query": [
-						{
-							"key": "limit",
-							"value": "3"
-						},
-						{
-							"key": "page",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "getOrdersCountByuser",
 			"request": {
 				"method": "GET",
@@ -268,6 +239,89 @@
 							"key": "page",
 							"value": "1"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOrder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:10000/order/60f01ac21dca1cec9fe5cb07?limit=3&page=1",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"order",
+						"60f01ac21dca1cec9fe5cb07"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addProductWithImage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "myFile",
+							"type": "file",
+							"src": "/home/reshma/Desktop/mango.jpeg"
+						},
+						{
+							"key": "_id",
+							"value": "66",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Mango",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "availableQuantity",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "manufacturer",
+							"value": "manufacture 9",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:10000/api/product",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"product"
 					]
 				}
 			},
